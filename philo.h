@@ -18,14 +18,13 @@ typedef struct s_arg
 
 typedef struct s_philo
 {
-	int				fork;
 	int				m_second;
 	int				phil_ind;
-	t_arg			*arg;
 	pthread_t		th_philo;
 	pthread_mutex_t	mutex_Philo;
 	pthread_mutex_t	mutex_fork_r;
 	pthread_mutex_t	mutex_fork_l;
+	t_arg			*arg;
 }	t_philo;
 
 

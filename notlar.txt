@@ -1,0 +1,26 @@
+ //philo sayısı kadar çatal olması lazım 
+ //yemek yeme süresi bitmeden ölme zamanı gelirse direk ölmesi lazım.
+ //philo yemek yerken iki çatal kullanır neden mi çünkü salaklar.
+ //1 numaralı philo en son ki philonun yanında oturmaktadır => n - 1 n + 1 yuvarlak masa
+ //Yer, düşünür veya uyurlar
+ //Her eylemi yaparken diğer eylemleri yapmazlar.
+ //Çatalları sağ ve sol eline alarak yerler
+ //yemek->uyku->düşünmek
+ //philo açlıktan öldüğünde simülasyon durur.
+ //Her philonun yemek yemesi lazım asla aç kalmamalıdırlar.
+
+ // PHİLO LOGS
+ //timestamp_in_ms X has taken a fork
+ //timestamp_in_ms X has is eating
+ //timestamp_in_ms X has is sleeping
+ //timestamp_in_ms X has is thinking
+ //timestamp_in_ms X died => mili saniye içersinde öldü,
+ 
+ // !!! data races !!!
+
+ //philo sayısı kadar thread olması lazım; ok
+ //eğer birden çok philo varsa sağ ve sol da çatal vardır. Tek philoda tek çatal var.
+ //çatal durumlarını mutex ile korumaya almamız lazım.
+
+// çatalları ver.
+// çatalı olan yemeye başlasın diğeri dursun.>2
