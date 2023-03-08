@@ -1,4 +1,4 @@
- //philo sayısı kadar çatal olması lazım 
+ //philo sayısı kadar çatal olması lazım ok
  //yemek yeme süresi bitmeden ölme zamanı gelirse direk ölmesi lazım.
  //philo yemek yerken iki çatal kullanır neden mi çünkü salaklar.
  //1 numaralı philo en son ki philonun yanında oturmaktadır => n - 1 n + 1 yuvarlak masa
@@ -14,7 +14,7 @@
  //timestamp_in_ms X has is eating
  //timestamp_in_ms X has is sleeping
  //timestamp_in_ms X has is thinking
- //timestamp_in_ms X died => mili saniye içersinde öldü,
+ //timestamp_in_ms X died => micro saniye içersinde öldü,
  
  // !!! data races !!!
 
@@ -24,3 +24,6 @@
 
 // çatalları ver.
 // çatalı olan yemeye başlasın diğeri dursun.>2
+
+1 second = 1000 millisecond;
+1 millisecond = 1000 microsecond;
