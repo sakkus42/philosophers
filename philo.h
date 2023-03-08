@@ -15,7 +15,7 @@ typedef struct s_arg
 	int			time_sleep; //philo uyuyarak geçireceği zaman
 	int			time_simu; // optional argument simulasyon süresi
 	long int	time_ms; // şu anki zamanın micro second hali
-	int			phil_time; // philo iş yaparken geçen süre
+	int			is;
 }	t_arg;
 
 typedef struct	s_mutex
@@ -23,11 +23,13 @@ typedef struct	s_mutex
 	pthread_mutex_t	mutex_Philo;
 	pthread_mutex_t	mutex_fork_r;
 	pthread_mutex_t	mutex_fork_l;
+	pthread_mutex_t	mutex_first;
 }	t_mutex;
 
 typedef struct s_philo
 {
 	int				phil_ind;
+	int				phil_time;
 	t_arg			*arg;
 	t_mutex			*mutex;
 	pthread_t		th_philo;
