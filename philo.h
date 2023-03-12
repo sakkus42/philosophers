@@ -32,5 +32,14 @@ typedef struct s_philo
 	pthread_t		th_philo;
 }	t_philo;
 
+void		wait_thread(int wait, t_philo *phil);
+void		print_time(char *str, t_philo *phil, int death);
+void		fill_to_philo(t_philo *phil, pthread_mutex_t *forks, pthread_mutex_t *print, t_arg *arg);
+void		fill_to_arg(t_arg *arg, char **arv, int ac);
+int			chk_neg_atoi(char **arv);
+int			is_dead(t_philo *phil);
+int			checker_arg(int ac, char *arv[]);
+long int	ft_atoi(char *str);
+t_time		now_time_ms();
 
 # endif
