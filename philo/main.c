@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sakkus <sakkus@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/14 08:58:00 by sakkus            #+#    #+#             */
+/*   Updated: 2023/03/14 08:58:02 by sakkus           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 int	eat(t_philo *phil)
@@ -20,9 +32,11 @@ int	eat(t_philo *phil)
 		return (1);
 	}
 	print_time("is eating", phil, 0);
-	wait_thread(phil->arg->time_eat, phil);
+	pthread_mutex_lock(phil->mutex_philo);
 	phil->eaten++;
 	phil->last_eat = now_time_ms();
+	pthread_mutex_unlock(phil->mutex_philo);
+	wait_thread(phil->arg->time_eat, phil);
 	return (0);
 }
 
@@ -30,21 +44,21 @@ int	sleeping(t_philo *phil)
 {
 	pthread_mutex_unlock(phil->mutex_left);
 	pthread_mutex_unlock(phil->mutex_right);
+	print_time("is sleeping", phil, 0);
 	if (is_dead(phil))
 		return (1);
 	wait_thread(phil->arg->time_sleep, phil);
-	print_time("is sleeping", phil, 0);
 	return (0);
 }
 
 void	*house_of_philo(void *arg)
 {
-	t_philo *phil;
+	t_philo	*phil;
 
 	phil = (t_philo *)arg;
 	while (1)
 	{
-		if(eat(phil))
+		if (eat(phil))
 			break ;
 		if (sleeping(phil))
 			break ;
@@ -81,15 +95,17 @@ int	main(int ac, char *arv[])
 	pthread_mutex_t	*print;
 
 	if (ac < 5 || ac > 6)
-		return (0);
+		return (1);
 	if (chk_neg_atoi(arv) || checker_arg(ac, arv))
-		return (0);
+		return (2);
 	philo = malloc(sizeof(t_philo) * ft_atoi(arv[1]));
 	forks = malloc(sizeof(pthread_mutex_t) * ft_atoi(arv[1]));
 	print = malloc(sizeof(pthread_mutex_t));
 	if (!philo || !forks || !print)
-		return (0);
+		return (3);
 	fill_to_arg(&arg, arv, ac);
 	fill_to_philo(philo, forks, print, &arg);
 	init_thread(philo);
+	des_philo(philo);
+	return (0);
 }

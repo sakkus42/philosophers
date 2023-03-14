@@ -4,19 +4,16 @@ FLAGS = -Wall -Wextra -Werror -pthread
 SRC = 	main.c\
 		philo_utils.c\
 		utils.c\
+		des.c\
 
-OBJ = 	main.o\
-		philo_utils.o\
-		utils.o\
+OBJ = 	$(SRC:.c=.o)
+
 
 all: $(NAME)
 
 
 $(NAME): $(OBJ)
 	$(CC) $(FLAGS) -o $(NAME) $(OBJ)
-
-$(OBJ):
-	$(CC) $(FLAGS) -c $(SRC)
 
 clean:
 	rm -f *.o
